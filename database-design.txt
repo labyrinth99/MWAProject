@@ -1,0 +1,19 @@
+Questions {
+		text:'Question text',
+		Status: (active, inactive)
+	  }
+Users     {
+		name:
+		email:
+		role: (admin/staff)
+	  }
+Students {
+		status (new, invited, answered,pass, fail)
+		enrollment_data:
+		enrollment_form: [name, address...]
+		exam questions:[question_text, answer_text, answer_duration]
+		monitoring: [start_time,end_time,out_of_window]
+		exam_stapshots [{question_id, snap_text, frame_id}]
+		grading:[{question_id, score}]
+		results_sent: boolean
+	 }
