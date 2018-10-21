@@ -23,17 +23,17 @@ export function rootReducer(state, action){
         }
 
         case UPDATE_STUDENT: {
-            // not tested
+            // not tested but should worke
             const newStudent = action.student;
-            const oldStudent = state.todos.find(t => t._id === newStudent._id);
+            const oldStudent = state.students.find(s => s._id === newStudent._id);
             console.log('old student:' + oldStudent);
             console.log('new student:' + newStudent);
-            const index = state.todos.indexOf(oldStudent);
+            const index = state.students.indexOf(oldStudent);
             const updatedStudent = Object.assign({}, state, {
-                todos: [
-                    ...state.todos.slice(0,index),
+                students: [
+                    ...state.students.slice(0,index),
                     Object.assign({},newStudent),
-                    ...state.todos.slice(index + 1)
+                    ...state.students.slice(index + 1)
                 ]
             })
             return updatedStudent;
