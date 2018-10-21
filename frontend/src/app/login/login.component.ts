@@ -11,7 +11,7 @@ interface Credentials { username:string, password:string}
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  wrongeCredentials=false;
   credentials:Credentials;
   myForm: FormGroup;
   constructor(private formBuilder:FormBuilder, private common:CommonService,private router:Router) {
@@ -26,9 +26,11 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.wrongeCredentials=false;
   }
 
   onLogin() {
+
     this.credentials={username:this.myForm.get('email').value,password:this.myForm.get('password').value};
     this.common.login(this.credentials).pipe(first())
     .subscribe(
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
             }
         },
         error => {
-            console.log(error);
+            this.wrongeCredentials=true;
         });
   }
   navigate(route){

@@ -3,10 +3,13 @@
         <div class="form-group">
             <label>Please Login</label>
         </div>
+        <div class="alert alert-danger" *ngIf="wrongeCredentials">
+            username or password is incorrect!
+        </div>
         <hr/>
         <div class="form-group">
             <input type="text" class="form-control" id="email" formControlName="email" placeholder="email" />
-            <div class="alert alert-danger" *ngIf="!myForm.get('email').valid">
+            <div class="alert alert-danger" *ngIf="!myForm.get('email').valid && myForm.get('email').touched">
                 Invalid Email
             </div>
         </div>
