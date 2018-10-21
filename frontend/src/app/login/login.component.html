@@ -1,0 +1,18 @@
+<div class="container" style="width: 40%">
+    <form [formGroup]="myForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+            <label>Please Login</label>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <input type="text" class="form-control" id="email" formControlName="email" placeholder="email" />
+            <div class="alert alert-danger" *ngIf="!myForm.get('email').valid">
+                Invalid Email
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" />
+        </div>
+        <button type="submit" class="btn btn-primary " [disabled]="!myForm.valid ">Login here</button>
+    </form>
+</div>
