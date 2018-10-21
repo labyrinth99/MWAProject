@@ -1,7 +1,7 @@
 export interface IStudent {
     status: string;
-    enrollmentData: string;
-    enrollmentForm: any[];
+    enrollmentDate: Date;
+    enrollmentForm: any;
     examQuestions: any[];
     monitoring: any[];
     snapshots:any[];

@@ -1,3 +1,38 @@
-<p>
-  enroll-form works!
-</p>
+<!-- Students {
+  status (new, invited, answered,pass, fail)
+  enrollment_data:
+  enrollment_form: [name, address...]
+  exam questions:[question_text, answer_text, answer_duration]
+  monitoring: [start_time,end_time,out_of_window]
+  exam_stapshots [{question_id, snap_text, frame_id}]
+  grading:[{question_id, score}]
+  results_sent: boolean
+ } -->
+<h6>Enrollment Form</h6>
+<form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+    <div class="form-row">
+        <div class="col-auto">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="your name"
+              id="name"
+              [(ngModel)]="model.enrollmentForm.name"
+              name="name"
+              #description="ngModel">
+        </div>
+        <div class="col-auto">
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="your email"
+            id="email"
+            [(ngModel)]="model.enrollmentForm.email"
+            name="email"
+            #responsible="ngModel">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Enroll</button>
+        </div>
+      </div>
+</form>

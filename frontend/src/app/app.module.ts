@@ -23,6 +23,7 @@ import { AuthenService } from './services/intercept.service';
 
 import {IAppState, INITIAL_STATE, rootReducer} from './redux/store'
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {NgRedux, NgReduxModule} from '@angular-redux/store';
     GradeExamComponent,
     ExamHomeComponent,
     TakeExamComponent,
-    HomeComponent
+    HomeComponent    
   ],
   imports: [
     BrowserModule,
@@ -47,6 +48,7 @@ import {NgRedux, NgReduxModule} from '@angular-redux/store';
     ReactiveFormsModule,
     HttpClientModule,
     NgReduxModule,
+    FormsModule,
     NgbModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS,useClass:AuthenService, multi:true}],
