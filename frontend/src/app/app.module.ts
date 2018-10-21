@@ -21,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenService } from './services/intercept.service';
 
+import {IAppState, INITIAL_STATE, rootReducer} from './redux/store'
+import {NgRedux, NgReduxModule} from '@angular-redux/store';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,9 +46,15 @@ import { AuthenService } from './services/intercept.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgReduxModule,
     NgbModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS,useClass:AuthenService, multi:true}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor(ngRedux:NgRedux<IAppState>){
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
