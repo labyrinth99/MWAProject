@@ -13,10 +13,10 @@ module.exports = {
 function authenticate({ username, password }) {
     //    const user = users.find(u => u.username === username && u.password === password)
     return new Promise((resolve, reject) => {
-        User.findOne({ username: username, password: password }).then((user) => {
+        User.findOne({ username: username, password: password }).lean().then((user) => {
             if (user) {
-                const token = jwt.sign({ sub: user._doc.role }, config.secret);
-                const { password, ...userWithoutPassword } = user._doc;
+                const token = jwt.sign({ sub: user.role }, config.secret);
+                const { password, ...userWithoutPassword } = user;
                 resolve({
                     ...userWithoutPassword,
                     token
