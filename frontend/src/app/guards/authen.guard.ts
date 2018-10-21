@@ -11,11 +11,24 @@ export class AuthenGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
+    let nextRoute = next.url[0].path;
     if(!this.common.IsLoggedIn()){
       console.log('unauthorized access');
       this.router.navigate(['login']);
       return false;
+    }
+    console.log("current role",this.common.getUserRole());
+    if(this.common.getUserRole()>1){ //if role is not admin protect admin pages
+      switch(nextRoute){
+        case "admin":
+        case "answeredstudents":
+        case "gradexam":
+        case "managequestions":
+        case "managestaff":
+          console.log("access denied due to role");
+          this.router.navigate(['home']);
+          return false;
+      }
     }
     return true;
   }
