@@ -23,7 +23,7 @@ import { AuthenService } from './services/intercept.service';
 
 import {IAppState, INITIAL_STATE, rootReducer} from './redux/store'
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
