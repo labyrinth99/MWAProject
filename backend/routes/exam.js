@@ -4,12 +4,10 @@ const examService = require('../services/examService');
 const router = express.Router();
 
 router.post('/', function(req, res, next) {
-    console.log('On the service baby');
     const student = req.body.student;
     student.status = 'answered';
     student.enrollmentDate = new Date();
     
-    console.log('insede the service 2');
     console.log(student);
     
     const sampleQuestionsPromise = examService.getNewExamQuestion();
