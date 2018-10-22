@@ -4,7 +4,6 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ManagestaffaddComponent } from '../managestaffadd/managestaffadd.component';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 import { ManagestaffeditComponent } from '../managestaffedit/managestaffedit.component';
 
 @Component({
@@ -40,7 +39,6 @@ export class ManageStaffComponent implements OnInit {
   };
 
   addUser(): void {
- //   this.router.navigate(['managestaffadd']);
     const modal = this.modalService.open(ManagestaffaddComponent);
     modal.result.then(()=>this.ngOnInit());
   };
