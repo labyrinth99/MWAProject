@@ -17,32 +17,68 @@ export class AuthenGuard implements CanActivate {
       this.router.navigate(['login']);
       return false;
     }
-    if(parseInt(this.common.getUserRole())!=1){ //if role is not admin protect admin pages
-      switch(nextRoute){
-        case "admin":
-        case "answeredstudents":
-        case "gradexam":
-        case "managequestions":
-        case "managestaff":
-        case "managestaffadd":
-        case "managestaffedit":
-        case "managequestionsadd":
-        case "managequestionsedit":
-          console.log("Access denied due to role");
-          this.router.navigate(['home']);
-          return false;
+
+    switch(parseInt(this.common.getUserRole())){
+      case 1:{
+        switch(nextRoute){
+              case "admin":
+              case "answeredstudents":
+              case "gradexam":
+              case "managequestions":
+              case "managestaff":
+              case "managestaffadd":
+              case "managestaffedit":
+              case "managequestionsadd":
+              case "managequestionsedit":
+                return true;
       }
     }
-    if(parseInt(this.common.getUserRole())!=2){ //if role is not staff protect admin pages
-      switch(nextRoute){
-        case "staffhome":
-        case "newstudents":
-        case "enrolled":
-          console.log("Access denied due to role");
+      case 2:{
+        switch(nextRoute){
+              case "staffhome":
+              case "newstudents":
+              case "enrolled":
+                return true;
+            }
+
+      }
+      case 3:{
+        return true; // for goustavo
+      }
+
+      default:{
+        console.log("Access denied due to role");
           this.router.navigate(['home']);
           return false;
+
       }
     }
-    return true;
+    // if(parseInt(this.common.getUserRole())!=1){ //if role is not admin protect admin pages
+    //   switch(nextRoute){
+    //     case "admin":
+    //     case "answeredstudents":
+    //     case "gradexam":
+    //     case "managequestions":
+    //     case "managestaff":
+    //     case "managestaffadd":
+    //     case "managestaffedit":
+    //     case "managequestionsadd":
+    //     case "managequestionsedit":
+    //       console.log("Access denied due to role");
+    //       this.router.navigate(['home']);
+    //       return false;
+    //   }
+    // }
+    // if(parseInt(this.common.getUserRole())!=2){ //if role is not staff protect admin pages
+    //   switch(nextRoute){
+    //     case "staffhome":
+    //     case "newstudents":
+    //     case "enrolled":
+    //       console.log("Access denied due to role");
+    //       this.router.navigate(['home']);
+    //       return false;
+    //   }
+    // }
+    // return true;
   }
 }
