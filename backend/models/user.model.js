@@ -5,9 +5,9 @@ const UserSchema = mongoose.Schema({
     password: String,
     firstname: String,
     lastname: String,
-    Role: Number
-});
+    role: String
+}, { versionKey: false });
 UserSchema.statics.findByEmail = function(email) {
-    return this.findOne({ email: email });
+    return this.findOne({ username: email });
 }
 module.exports = mongoose.model('User', UserSchema);
