@@ -28,7 +28,17 @@ export class AuthenGuard implements CanActivate {
         case "managestaffedit":
         case "managequestionsadd":
         case "managequestionsedit":
-          console.log("access denied due to role");
+          console.log("Access denied due to role");
+          this.router.navigate(['home']);
+          return false;
+      }
+    }
+    if(parseInt(this.common.getUserRole())!=2){ //if role is not staff protect admin pages
+      switch(nextRoute){
+        case "staffhome":
+        case "newstudents":
+        case "enrolled":
+          console.log("Access denied due to role");
           this.router.navigate(['home']);
           return false;
       }

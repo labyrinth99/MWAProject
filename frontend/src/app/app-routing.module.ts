@@ -18,13 +18,15 @@ import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.comp
 import { compileComponentFromMetadata } from '@angular/compiler';
 import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
 import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
-
+import { EnrolledStudentsComponent } from './enrolled-students/enrolled-students.component';
+import { from } from 'rxjs';
 const routes: Routes = [
   {path:'', component:HomeComponent,pathMatch:'full'},
   {path:'home',redirectTo:'/'},
   {path:'login',component:LoginComponent},
   {path:'enrollform',component:EnrollFormComponent},
   {path:'admin',component:AdminHomeComponent,canActivate:[AuthenGuard]},
+  {path:'enrolled',component:EnrolledStudentsComponent,canActivate:[AuthenGuard]},
   {path:'answeredstudents',component:AnsweredStudentsComponent,canActivate:[AuthenGuard]},
   {path:'examhome',component:ExamHomeComponent,canActivate:[AuthenGuard]},
   {path:'gradexam',component:GradeExamComponent,canActivate:[AuthenGuard]},
