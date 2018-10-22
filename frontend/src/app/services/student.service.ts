@@ -13,6 +13,6 @@ export class StudentService {
   constructor(private http: HttpClient) {}
 
   createStudent(student: IStudent) {
-     this.http.post(studentsUrl, student).subscribe();
+     return this.http.post(studentsUrl, student);
   }
 }

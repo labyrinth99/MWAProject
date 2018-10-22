@@ -23,7 +23,7 @@ export function rootReducer(state, action){
         }
 
         case UPDATE_STUDENT: {
-            // not tested but should worke
+            // not tested but should work
             const newStudent = action.student;
             const oldStudent = state.students.find(s => s._id === newStudent._id);
             console.log('old student:' + oldStudent);
