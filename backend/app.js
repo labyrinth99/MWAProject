@@ -4,7 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var mailer = require('express-mailer');
+var util = require('util');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,7 +21,19 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
+
+mailer.extend(app, {
+    from: 'no-reply@studentexam.mum.edu',
+    host: 'smtp.gmail.com', // hostname
+    secureConnection: true, // use SSL
+    port: 465, // port for secure SMTP
+    transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+    auth: {
+        user: 'mwaprojectg8@gmail.com', // gmail id
+        pass: 'NodeExpress!!' // gmail password
+    }
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,7 +53,10 @@ mongoose.connect('mongodb://user1:a123456@ds045087.mlab.com:45087/mwaproject', {
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
 });
-
+app.use('*', (req, res, next) => {
+    req.mailer = util.promisify(app.mailer.send);
+    next();
+});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/authenticate', authenRouter);
