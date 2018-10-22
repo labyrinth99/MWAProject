@@ -9,7 +9,7 @@ export interface Credentials { username:string, password:string}
 })
 export class CommonService {
   private helper = new JwtHelperService();
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
   }
   login(credentials: Credentials) {
     return this.http.post<any>('http://localhost:3000/authenticate', credentials)
@@ -27,10 +27,15 @@ export class CommonService {
       return false;
   }
   getUserRole() {
+
+    if(localStorage.getItem('student_email'))
+    return 3;
+    else{
       let currentUser = JSON.parse(localStorage.getItem('token_id'));
       let payload= this.helper.decodeToken(currentUser.token);
       if(this.IsLoggedIn()) return payload.sub;
       else return 0;
+    }
   }
   Logout() {
     localStorage.removeItem('token_id');
