@@ -12,9 +12,9 @@
 <form (ngSubmit)="onSubmit()" #todoForm="ngForm">
     <div class="form-row">
         <div class="col-auto">
-            <input 
-              type="text" 
-              class="form-control" 
+            <input
+              type="text"
+              class="form-control"
               placeholder="your name"
               id="name"
               [(ngModel)]="model.enrollmentForm.name"
@@ -22,15 +22,25 @@
               #description="ngModel">
         </div>
         <div class="col-auto">
-          <input 
-            type="text" 
-            class="form-control" 
+          <input
+            type="text"
+            class="form-control"
             placeholder="your email"
             id="email"
             [(ngModel)]="model.enrollmentForm.email"
             name="email"
             #responsible="ngModel">
         </div>
+        <!-- <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="your address"
+            id="address"
+            [(ngModel)]="model.enrollmentForm.email"
+            name="address"
+            #responsible="ngModel">
+        </div> -->
         <div class="col-auto">
           <button type="submit" class="btn btn-primary">Enroll</button>
         </div>
