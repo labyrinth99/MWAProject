@@ -17,7 +17,7 @@ export class AuthenGuard implements CanActivate {
       this.router.navigate(['login']);
       return false;
     }
-    if(parseInt(this.common.getUserRole())>1){ //if role is not admin protect admin pages
+    if(parseInt(this.common.getUserRole())!=1){ //if role is not admin protect admin pages
       switch(nextRoute){
         case "admin":
         case "answeredstudents":
