@@ -23,7 +23,9 @@ import { AuthenService } from './services/intercept.service';
 
 import {IAppState, INITIAL_STATE, rootReducer} from './redux/store'
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.component';
+import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FormsModule } from '@angular/forms'
     GradeExamComponent,
     ExamHomeComponent,
     TakeExamComponent,
-    HomeComponent    
+    HomeComponent,
+    ManagestaffaddComponent,
+    ManagestaffeditComponent    
   ],
   imports: [
     BrowserModule,

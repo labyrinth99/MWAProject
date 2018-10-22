@@ -1,3 +1,27 @@
-<p>
-  manage-staff works!
-</p>
+<div class="col-md-6">
+    <h2> User Details</h2>
+    <button class="btn btn-danger" (click)="addUser()"> Add User</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td class="d-none">{{user._id}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.role}}</td>
+                <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
+                    <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

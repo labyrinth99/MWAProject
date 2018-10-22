@@ -13,6 +13,8 @@ import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 import { NewStudentsComponent } from './new-students/new-students.component';
 import { StaffHomeComponent } from './staff-home/staff-home.component';
 import { TakeExamComponent } from './take-exam/take-exam.component';
+import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.component';
+import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent,pathMatch:'full'},
@@ -25,6 +27,8 @@ const routes: Routes = [
   {path:'gradexam',component:GradeExamComponent,canActivate:[AuthenGuard]},
   {path:'managequestions',component:ManageQuestionsComponent,canActivate:[AuthenGuard]},
   {path:'managestaff',component:ManageStaffComponent,canActivate:[AuthenGuard]},
+  {path:'managestaffadd',component:ManagestaffaddComponent, canActivate:[AuthenGuard]},
+  {path:'managestaffedit',component:ManagestaffeditComponent, canActivate:[AuthenGuard]},
   {path:'newstudents',component:NewStudentsComponent,canActivate:[AuthenGuard]},
   {path:'staffhome',component:StaffHomeComponent,canActivate:[AuthenGuard]},
   {path:'takeexam',component:TakeExamComponent,canActivate:[AuthenGuard]},
