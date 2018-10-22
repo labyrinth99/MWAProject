@@ -1,13 +1,19 @@
 import { IStudent } from './student';
 import { CREATE_STUDENT, UPDATE_STUDENT, RETAKE_EXAM, GRADE_EXAM} from './actions'
+import { IQuestion } from './question';
+import { IUser } from './user';
 
 export interface IAppState{
     students: IStudent[];
-    lastUpdate
+    questions: IQuestion[];
+    users: IUser[];
+    lastUpdate;
 }
 
 export const INITIAL_STATE: IAppState = {
     students: [],
+    questions: [],
+    users:[],
     lastUpdate: null
 }
 
