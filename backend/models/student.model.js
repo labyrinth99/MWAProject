@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-console.log('insede the model');
+console.log('inside the student model');
 
 const StudentSchema = mongoose.Schema({
     status: String,
