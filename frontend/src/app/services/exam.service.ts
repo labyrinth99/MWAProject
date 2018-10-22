@@ -15,6 +15,6 @@ export class ExamService {
   startExam(student: IStudent) {
     console.log('started service this.student');
     console.log(student);
-     this.http.post(examUrl, {student}).subscribe(x => console.log(x));
+    return this.http.post(examUrl, {student});
   }
 }
