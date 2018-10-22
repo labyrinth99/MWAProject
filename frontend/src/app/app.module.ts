@@ -25,7 +25,9 @@ import {IAppState, INITIAL_STATE, rootReducer} from './redux/store'
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
 import { FormsModule } from '@angular/forms';
 import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.component';
-import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component'
+import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component';
+import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
+import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.comp
     TakeExamComponent,
     HomeComponent,
     ManagestaffaddComponent,
-    ManagestaffeditComponent    
+    ManagestaffeditComponent,
+    ManagequestionsaddComponent,
+    ManagequestionseditComponent    
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ const UserSchema = mongoose.Schema({
     firstname: String,
     lastname: String,
     role: String
-});
+}, { versionKey: false });
 UserSchema.statics.findByEmail = function(email) {
     return this.findOne({ username: email });
 }

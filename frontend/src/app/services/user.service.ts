@@ -26,6 +26,6 @@ export class UserService {
       return this.http.get(usersUrl+id);
   }
   updateUser(user:IUser):Observable<any>{
-      return this.http.put(usersUrl,user);
+      return this.http.put(usersUrl+user._id,user);
   }
 }

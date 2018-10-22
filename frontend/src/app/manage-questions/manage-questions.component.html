@@ -1,3 +1,25 @@
-<p>
-  manage-questions works!
-</p>
+<div class="col-md-6" style="max-width: 60%;margin-left:20%">
+    <h2> Question Details</h2>
+    <hr/>
+    <button class="btn btn-danger" (click)="addQuestion()"> Add Question</button>
+    <p></p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">Id</th>
+                <th>Question</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let question of questions">
+                <td class="d-none">{{question._id}}</td>
+                <td>{{question.text}}</td>
+                <td>{{question.status}}</td>
+                <td><button class="btn btn-danger" (click)="deleteQuestion(question)"> Delete</button>
+                    <button class="btn btn-danger" (click)="editQuestion(question)" style="margin-left: 20px;"> Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

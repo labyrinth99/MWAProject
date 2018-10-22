@@ -15,7 +15,7 @@ export class ManageStaffComponent implements OnInit {
 
   users: IUser[];
 
-  constructor(private cd:ChangeDetectorRef,private modalService: NgbModal,private router: Router, private userService: UserService) { }
+  constructor(private modalService: NgbModal,private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUsers()
@@ -35,11 +35,11 @@ export class ManageStaffComponent implements OnInit {
     localStorage.removeItem("editUserId");
     localStorage.setItem("editUserId", user._id.toString());
     const modal = this.modalService.open(ManagestaffeditComponent);
-    modal.result.then(()=>this.ngOnInit());
+    modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
 
   addUser(): void {
     const modal = this.modalService.open(ManagestaffaddComponent);
-    modal.result.then(()=>this.ngOnInit());
+    modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
 }

@@ -12,22 +12,15 @@ router.get('/:id', function(req, res, next) {
 router.get('/', function(req, res, next) {
     User.find({}).cursor().pipe(JSONStream.stringify()).pipe(res.type('json'));
 });
-router.put('/', function(req, res, next) {
+router.put('/:id', function(req, res, next) {
     const { _id, ...userWithoutID } = req.body;
-    User.findOneAndUpdate({ _id: req.body._id }, userWithoutID, (err, doc) => {
+    User.findOneAndUpdate({ _id: req.params.id }, userWithoutID, (err, doc) => {
         if (err) return next(err);
         res.send({ message: "user is updated" });
     });
 });
 router.post('/', function(req, res, next) {
-    console.log("user:", req.body);
-    user = new User({
-        username: req.body.username,
-        password: req.body.password,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        role: req.body.role
-    });
+    user = new User(req.body);
     user.save((err) => {
         if (err) return next(err);
         res.send({ message: "user:" + req.body.username + " is saved" });
