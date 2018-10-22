@@ -31,10 +31,12 @@ export class EnrollFormComponent implements OnInit {
   }
 
   onSubmit(){
-    const action = this.ngRedux.dispatch({type: CREATE_STUDENT, student: this.model}); 
+    //subscribe
+    this.studentService.createStudent(this.model).subscribe(() => {
+      this.ngRedux.dispatch({type: CREATE_STUDENT, student: this.model});
+    }); 
     console.log('New Student');
-    console.log(action.student);
-    this.studentService.createStudent(action.student);
+    console.log(this.model);
   }
 
 }

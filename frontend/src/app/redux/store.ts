@@ -1,5 +1,5 @@
 import { IStudent } from './student';
-import { CREATE_STUDENT, UPDATE_STUDENT, RETAKE_EXAM, GRADE_EXAM} from './actions'
+import { CREATE_STUDENT, UPDATE_STUDENT, FETCH_STUDENTS } from './actions'
 import { IQuestion } from './question';
 import { IUser } from './user';
 
@@ -29,7 +29,7 @@ export function rootReducer(state, action){
         }
 
         case UPDATE_STUDENT: {
-            // not tested but should worke
+            // not tested but should work
             const newStudent = action.student;
             const oldStudent = state.students.find(s => s._id === newStudent._id);
             console.log('old student:' + oldStudent);
@@ -43,6 +43,9 @@ export function rootReducer(state, action){
                 ]
             })
             return updatedStudent;
+        }
+        case FETCH_STUDENTS: {
+            state.students =  action.students;
         }
     }
     return state;
