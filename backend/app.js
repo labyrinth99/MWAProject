@@ -16,7 +16,7 @@ var questionsRouter = require('./routes/questions');
 var studentsRouter = require('./routes/students');
 var examRouter = require('./routes/exam');
 var jwt = require('./services/jwt');
-
+var emailRouter = require('./routes/emailer');
 var app = express();
 
 // view engine setup
@@ -64,7 +64,7 @@ app.use('/checkemail', checkemailRouter);
 app.use('/questions', questionsRouter);
 app.use('/students', studentsRouter);
 app.use('/exam', examRouter);
-
+app.use('/emailer', emailRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

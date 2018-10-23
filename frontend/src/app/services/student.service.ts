@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:3000/';
 const studentsUrl = baseUrl + 'students/';
+const emailerUrl = baseUrl +'emailer/';
 
 
 @Injectable({
@@ -38,4 +39,12 @@ getStudentEnrolled(condition:string):Observable<any>{
 updateUser(student:IStudent):Observable<any>{
     return this.http.put(studentsUrl+student.enrollmentForm.email,student);
 }
+
+inviter(email:string, name:string){
+
+  return this.http.post(emailerUrl, {email:email, name:name});
+
+}
+
+
 }

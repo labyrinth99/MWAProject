@@ -6,7 +6,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="d-none">Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address</th>
@@ -20,8 +19,8 @@
                 <td>{{student.enrollmentForm.email}}</td>
                 <td>{{student.enrollmentForm.address}}</td>
                 <td>{{student.status}}</td>
-                <!-- <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
-                    <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td> -->
+                <td><button class="btn btn-danger" (click)='invite(student)'>Invite To Exam</button></td>
+                    <!-- <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td> -->
 
             </tr>
         </tbody>

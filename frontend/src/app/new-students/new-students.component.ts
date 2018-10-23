@@ -21,4 +21,16 @@ export class NewStudentsComponent implements OnInit {
       },(error)=>console.log(error));
   }
 
+  invite(studentx: IStudent){
+
+    this.studentService.inviter(studentx.enrollmentForm.email, studentx.enrollmentForm.name)
+      .subscribe( data => {
+         console.log(data);
+      },(error)=>console.log(error));
+
+      alert("Email Sent");
+      this.ngOnInit();
+
+  }
+
 }
