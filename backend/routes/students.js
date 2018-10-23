@@ -5,7 +5,7 @@ var JSONStream = require('JSONStream');
 
 /* GET students listing. */
 router.get('/', function(req, res, next) {
-    Student.find({}).cursor().pipe(JSONStream.stringify()).pipe(res.type('json'));
+    res.send('respond with a resource');
 });
 
 
@@ -16,14 +16,6 @@ router.post('/', function(req, res, next) {
     student.save((err) => {
         if (err) return next(err);
         res.send({ message: "student:" + req.body.enrollmentForm.name + " is saved" });
-    });
-});
-
-/* Get Student by Email */
-router.get('/:email', function(req, res, next) {
-    Student.findOne(req.params.email, (err, doc) => {
-        if (err) return next(err);
-        res.send(doc);
     });
 });
 
