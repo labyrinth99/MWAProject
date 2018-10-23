@@ -43,7 +43,7 @@ export class EnrolledStudentsComponent implements OnInit {
 
   invite(studentx: IStudent){
 
-    this.studentService.inviter(studentx.enrollmentForm.email, studentx.enrollmentForm.name)
+    this.studentService.inviter(studentx.enrollmentForm.email, studentx.enrollmentForm.name,'email')
       .subscribe( data => {
          console.log(data);
       },(error)=>console.log(error));
