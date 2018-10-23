@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IQuestion } from '../redux/question';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,15 +12,15 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./managequestionsedit.component.css']
 })
 export class ManagequestionseditComponent implements OnInit {
+  @Input() currentID:string;
   question: IQuestion;
   editForm: FormGroup;
-  constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder,private router: Router, private questionService: QuestionService) { }
+  constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder, private questionService: QuestionService) { }
 
   ngOnInit() {
-    let questionId = localStorage.getItem("editQuestionId");
-    if(!questionId) {
-      alert("Invalid action.")
-      this.router.navigate(['managestaff']);
+    if(!this.currentID) {
+      console.log("Invalid action.");
+      this.activeModal.close();
       return;
     }
     this.editForm = this.formBuilder.group({
@@ -28,10 +28,10 @@ export class ManagequestionseditComponent implements OnInit {
       text: ['', Validators.required],
       status:['', Validators.required],
     });
-    this.questionService.getQuestionById(questionId)
+    this.questionService.getQuestionById(this.currentID)
       .subscribe( data => {
         this.editForm.setValue(data);
-      });
+      },(err)=>console.log(err));
   }
 
   onSubmit() {

@@ -32,9 +32,8 @@ export class ManageQuestionsComponent implements OnInit {
   };
 
   editQuestion(question: IQuestion): void {
-    localStorage.removeItem("editQuestionId");
-    localStorage.setItem("editQuestionId", question._id.toString());
     const modal = this.modalService.open(ManagequestionseditComponent);
+    modal.componentInstance.currentID= question._id.toString();
     modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
 

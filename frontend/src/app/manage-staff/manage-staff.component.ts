@@ -32,9 +32,8 @@ export class ManageStaffComponent implements OnInit {
   };
 
   editUser(user: IUser): void {
-    localStorage.removeItem("editUserId");
-    localStorage.setItem("editUserId", user._id.toString());
     const modal = this.modalService.open(ManagestaffeditComponent);
+    modal.componentInstance.currentID= user._id.toString();
     modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
 
