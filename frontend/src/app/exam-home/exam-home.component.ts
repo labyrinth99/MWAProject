@@ -1,5 +1,5 @@
 import { IAppState } from './../redux/store';
-import { FETCH_STUDENTS } from './../redux/actions';
+import { FETCH_STUDENTS, UPDATE_STUDENT } from './../redux/actions';
 import { IStudent } from './../redux/student';
 import { NgRedux } from '@angular-redux/store';
 import { ExamService } from './../services/exam.service';
@@ -22,26 +22,29 @@ export class ExamHomeComponent implements OnInit {
     //validate token
 
     //TODO - get student
-  const student: IStudent = {
-    status: "new",
-    enrollmentDate: new Date(),
-    enrollmentForm: {},
-    examQuestions: [],
-    monitoring: [],
-    snapshots: [],
-    grading: [],
-    resultsSent: false
-  };
-
-  console.log(student);
-  this.examService.startExam(student).subscribe( (data) => {
-      this.ngRedux.dispatch({type: FETCH_STUDENTS, students: [data]});
-      console.log(this.ngRedux.getState());
-    });
   }
 
   onClick(){
-    console.log('reached here!');
+    const student: IStudent = {
+      status: "new",
+      enrollmentDate: new Date(),
+      startDateTime: new Date(),
+      enrollmentForm: {name: 'student from homePage mock', email: 'teste@teste.com' },
+      examQuestions: [],
+      monitoring: [],
+      snapshots: [],
+      grading: [],
+      resultsSent: false
+    };
+  
+    const studentEmail = student.enrollmentForm.email;
+    console.log('studentEmail');
+    console.log(studentEmail);
+    this.examService.startExam(student).subscribe( (data) => {
+        this.ngRedux.dispatch({type: UPDATE_STUDENT, student: data}).student;
+        console.log(this.ngRedux.getState());
+        this.router.navigate(['/takeexam/', {email: studentEmail}]);
+    });
   }
   
 }

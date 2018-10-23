@@ -15,4 +15,8 @@ export class StudentService {
   createStudent(student: IStudent) {
      return this.http.post(studentsUrl, student);
   }
+
+ getStudentByEmail(email: string) {
+    return this.http.get(studentsUrl + ":" + email);
+ }
 }
