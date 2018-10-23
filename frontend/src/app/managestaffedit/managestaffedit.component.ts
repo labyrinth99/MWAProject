@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { currentId } from 'async_hooks';
 
 @Component({
   selector: 'app-managestaffedit',
