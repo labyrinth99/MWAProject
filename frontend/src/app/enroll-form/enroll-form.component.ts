@@ -5,6 +5,10 @@ import { StudentService } from '../services/student.service';
 import { CREATE_STUDENT, UPDATE_STUDENT} from '../redux/actions'
 import { PopupService } from '@ng-bootstrap/ng-bootstrap/util/popup';
 
+
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-enroll-form',
   templateUrl: './enroll-form.component.html',
@@ -32,13 +36,29 @@ export class EnrollFormComponent implements OnInit {
   }
 
   onSubmit(){
-    //subscribe
-    this.studentService.createStudent(this.model).subscribe(() => {
-      this.ngRedux.dispatch({type: CREATE_STUDENT, student: this.model});
-    });
-    console.log('New Student');
-    alert("We will Contact you soon by Email For Further Instruction");
-    console.log(this.model);
-  }
+
+    const emailaddress= this.model.enrollmentForm.email;
+
+    this.studentService.getStudentByEmail(emailaddress)
+      .subscribe( data => {
+       console.log(data);
+       if(!data){
+        //subscribe
+        this.studentService.createStudent(this.model).subscribe(() => {
+          this.ngRedux.dispatch({type: CREATE_STUDENT, student: this.model});
+        });
+        console.log('New Student');
+        alert("We will Contact you soon by Email For Further Instruction");
+        console.log(this.model);
+      } else{
+        console.log("email was found");
+        console.log(data);
+        alert("same email was found on our database, use another");
+      }
+
+
+      },(error)=>console.log(error));
+
+}
 
 }
