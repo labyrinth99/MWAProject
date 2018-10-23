@@ -1,23 +1,22 @@
 const express = require('express');
 const examService = require('../services/examService');
+const studentService = require('../services/studentService');
 
 const router = express.Router();
 
 router.post('/', function(req, res, next) {
     const student = req.body.student;
     student.status = 'answered';
-    student.enrollmentDate = new Date();
-    
-    console.log(student);
-    
+    student.startDateTime = new Date();
     const sampleQuestionsPromise = examService.getNewExamQuestion();
 
     sampleQuestionsPromise.then(docs => {
-        student.examQuestions = docs;        
-        console.log(docs);
-    }).then(() => {
-        res.status(200).json(student);
+        student.examQuestions = docs; 
+        studentService.saveStudent(student).then((savedStudent) =>{
+            res.status(200).json(savedStudent);
+        });               
     });
+
 });
 
 module.exports = router;

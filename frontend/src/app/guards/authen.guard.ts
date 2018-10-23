@@ -43,7 +43,11 @@ export class AuthenGuard implements CanActivate {
 
       }
       case 3:{
-        return true; // for goustavo
+        switch(nextRoute){
+          case "examhome":
+          case "takeexam":
+            return true;
+        }
       }
 
       default:{

@@ -29,11 +29,8 @@ export function rootReducer(state, action){
         }
 
         case UPDATE_STUDENT: {
-            // not tested but should work
             const newStudent = action.student;
             const oldStudent = state.students.find(s => s._id === newStudent._id);
-            console.log('old student:' + oldStudent);
-            console.log('new student:' + newStudent);
             const index = state.students.indexOf(oldStudent);
             const updatedStudent = Object.assign({}, state, {
                 students: [

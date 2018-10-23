@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IStudent } from '../redux/student';
 import { StudentService } from '../services/student.service';
 import { CREATE_STUDENT, UPDATE_STUDENT} from '../redux/actions'
+import { PopupService } from '@ng-bootstrap/ng-bootstrap/util/popup';
 
 @Component({
   selector: 'app-enroll-form',
@@ -11,12 +12,13 @@ import { CREATE_STUDENT, UPDATE_STUDENT} from '../redux/actions'
 })
 export class EnrollFormComponent implements OnInit {
 
- 
+
   @select() students;
 
   model: IStudent = {
     status: "new",
     enrollmentDate: new Date(),
+    startDateTime: new Date(),
     enrollmentForm: {},
     examQuestions: [],
     monitoring: [],
@@ -34,8 +36,9 @@ export class EnrollFormComponent implements OnInit {
     //subscribe
     this.studentService.createStudent(this.model).subscribe(() => {
       this.ngRedux.dispatch({type: CREATE_STUDENT, student: this.model});
-    }); 
+    });
     console.log('New Student');
+    alert("We will Contact you soon by Email For Further Instruction");
     console.log(this.model);
   }
 
