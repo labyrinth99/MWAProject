@@ -5,13 +5,13 @@ console.log('inside the student model');
 const StudentSchema = mongoose.Schema({
     status: String,
     enrollmentDate: { type: Date, default: Date.now },
-    enrollmentForm: [] ,
+    enrollmentForm: {name:String, email:String} ,
     examQuestions: [],
     monitoring: [],
     snapshots: [],
     grading: [],
     resultsSent: Boolean
-});
+}, { versionKey: false });
 
 
 module.exports = mongoose.model('Student', StudentSchema);
