@@ -18,6 +18,7 @@ export class ManagestaffeditComponent implements OnInit {
   @select('users') rusers: Observable<IUser[]>;
   users: IUser[];
   editForm: FormGroup;
+  unsubscribe;
 
   constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder, private userService: UserService) { }
 
@@ -27,7 +28,7 @@ export class ManagestaffeditComponent implements OnInit {
       this.activeModal.close();
       return;
     }
-    this.rusers.subscribe((data)=>this.users=data);
+    this.unsubscribe=this.rusers.subscribe((data)=>this.users=data);
     this.editForm = this.formBuilder.group({
       _id: [],
       username: ['', Validators.required],
@@ -55,6 +56,9 @@ export class ManagestaffeditComponent implements OnInit {
           console.log(error);
         });*/
 
+  }
+  onDistroy(){
+    this.unsubscribe.unsubscribe();
   }
 
 }

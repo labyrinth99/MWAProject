@@ -20,10 +20,11 @@ router.put('/:id', function(req, res, next) {
     });
 });
 router.post('/', function(req, res, next) {
-    user = new User(req.body);
-    user.save((err) => {
+    const { _id, ...userWithoutID } = req.body;
+    user = new User(userWithoutID);
+    user.save((err, doc) => {
         if (err) return next(err);
-        res.send({ message: "user:" + req.body.username + " is saved" });
+        res.send(doc);
     });
 });
 router.delete('/:id', function(req, res, next) {

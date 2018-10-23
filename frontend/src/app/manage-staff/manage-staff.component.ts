@@ -17,12 +17,13 @@ export class ManageStaffComponent implements OnInit {
 
   @select('users') rusers:Observable<IUser[]>;
   users: IUser[];
+  unsubscribe;
 
   constructor(private modalService: NgbModal,private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUsers();
-    this.rusers.subscribe((data)=>{this.users=data;});
+    this.unsubscribe=this.rusers.subscribe((data)=>{this.users=data;});
   }
 
   deleteUser(user: IUser): void {
@@ -42,4 +43,7 @@ export class ManageStaffComponent implements OnInit {
     const modal = this.modalService.open(ManagestaffaddComponent);
     //modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
+  onDistroy(){
+    this.unsubscribe.unsubscribe();
+  }
 }

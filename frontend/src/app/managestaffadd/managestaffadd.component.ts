@@ -18,7 +18,7 @@ export class ManagestaffaddComponent implements OnInit {
   ngOnInit() {
 
     this.addForm = this.formBuilder.group({
-      id: [],
+      _id: [],
       username: ['', Validators.required],
       password: ['', Validators.required],
       firstname: ['', Validators.required],

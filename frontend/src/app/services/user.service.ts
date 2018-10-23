@@ -16,8 +16,8 @@ export class UserService {
   constructor(private http: HttpClient,private ngRedux: NgRedux<IUser>) {}
 
   createUser(user: IUser) {
-     this.http.post(usersUrl, user).subscribe((data)=>{
-         this.ngRedux.dispatch({type:CREATE_USER, user:user})
+     this.http.post<IUser>(usersUrl, user).subscribe((data)=>{
+         this.ngRedux.dispatch({type:CREATE_USER, user:data})
      },(err)=>console.log(err));
   }
   getUsers(){
