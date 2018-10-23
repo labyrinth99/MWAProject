@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:'admin',component:AdminHomeComponent,canActivate:[AuthenGuard]},
   {path:'enrolled',component:EnrolledStudentsComponent,canActivate:[AuthenGuard]},
   {path:'answeredstudents',component:AnsweredStudentsComponent,canActivate:[AuthenGuard]},
-  {path:'examhome',component:ExamHomeComponent,canActivate:[AuthenGuard]},
+  {path:'examhome',component:ExamHomeComponent/*,canActivate:[AuthenGuard]*/},
   {path:'gradexam',component:GradeExamComponent,canActivate:[AuthenGuard]},
   {path:'managequestions',component:ManageQuestionsComponent,canActivate:[AuthenGuard]},
   {path:'managequestionsadd',component:ManagequestionsaddComponent, canActivate:[AuthenGuard]},
@@ -38,7 +38,7 @@ const routes: Routes = [
   {path:'managestaffedit',component:ManagestaffeditComponent, canActivate:[AuthenGuard]},
   {path:'newstudents',component:NewStudentsComponent,canActivate:[AuthenGuard]},
   {path:'staffhome',component:StaffHomeComponent,canActivate:[AuthenGuard]},
-  {path:'takeexam',component:TakeExamComponent,canActivate:[AuthenGuard]},
+  {path:'takeexam',component:TakeExamComponent/*,canActivate:[AuthenGuard]*/},
   {path:'**',redirectTo:'/'}
 ];
 
