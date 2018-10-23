@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IUser } from '../redux/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
   templateUrl: './managestaffedit.component.html',
   styleUrls: ['./managestaffedit.component.css']
 })
-export class ManagestaffeditComponent implements OnInit {
+export class ManagestaffeditComponent implements OnInit, OnDestroy {
+
   @Input() currentID;
   @select('users') rusers: Observable<IUser[]>;
   users: IUser[];
@@ -57,7 +58,7 @@ export class ManagestaffeditComponent implements OnInit {
         });*/
 
   }
-  onDistroy(){
+  ngOnDestroy(): void {
     this.unsubscribe.unsubscribe();
   }
 

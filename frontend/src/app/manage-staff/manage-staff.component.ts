@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { IUser } from '../redux/user';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
   templateUrl: './manage-staff.component.html',
   styleUrls: ['./manage-staff.component.css']
 })
-export class ManageStaffComponent implements OnInit {
+export class ManageStaffComponent implements OnInit, OnDestroy {
+
 
   @select('users') rusers:Observable<IUser[]>;
   users: IUser[];
@@ -43,7 +44,7 @@ export class ManageStaffComponent implements OnInit {
     const modal = this.modalService.open(ManagestaffaddComponent);
     //modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
-  onDistroy(){
+  ngOnDestroy(): void {
     this.unsubscribe.unsubscribe();
   }
 }
