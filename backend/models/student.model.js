@@ -5,7 +5,7 @@ console.log('inside the student model');
 const StudentSchema = mongoose.Schema({
     status: String,
     enrollmentDate: { type: Date, default: Date.now },
-    enrollmentForm: [] ,
+    enrollmentForm: {name: String,email:String},
     examQuestions: [],
     monitoring: [],
     snapshots: [],
