@@ -25,11 +25,9 @@ router.get('/:email', function(req, res, next) {
     console.log(req.params.email);
     console.log("email get");
     console.log("email get");
-    console.log("email get");
-    console.log("email get");
     Student.findOne({"enrollmentForm.email":req.params.email}, (err, doc) => {
         if (err){ 
-            console.log("email get");
+            console.log("email get error");
         return next(err);}
         res.send(doc);
     });

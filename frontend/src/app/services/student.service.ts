@@ -42,9 +42,9 @@ updateUser(student:IStudent):Observable<any>{
     return this.http.put(studentsUrl+student.enrollmentForm.email,student);
 }
 
-inviter(email:string, name:string){
+inviter(email:string, name:string,templates:string){
 
-  return this.http.post(emailerUrl, {email:email, name:name});
+  return this.http.post(emailerUrl, {email:email, name:name, bla:templates});
 
 }
 

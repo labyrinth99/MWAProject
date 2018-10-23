@@ -17,10 +17,13 @@ router.post('/', function(req, res, next) {
         }
     };
     console.log(req.body + "working on it");
-    req.mailer('email', mailOptions).then(() => console.log("email sent")).catch((err) => next(err));
-    res.send("done");
+    req.mailer(req.body.bla, mailOptions).then(() => {
+        res.send("done");
     Student.findOneAndUpdate({ "enrollmentForm.email": req.body.email }, {$set:{status:"invited"}}, (err, doc) => {
         if (err) return next(err);});
+        console.log("email sent");
+    }).catch((err) => next(err));
+    
 
 
 });
