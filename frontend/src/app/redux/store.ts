@@ -79,7 +79,7 @@ export function rootReducer(state, action){
             const newUsers = [...state.users.filter( u => u._id != action.userID)];
             const newState = Object.assign({}, state, {users:newUsers});
             return newState;
-        }   
+        }
     }
     return state;
 }

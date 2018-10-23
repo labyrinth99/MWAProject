@@ -20,9 +20,9 @@ export class StudentService {
   getStudents():Observable<any>{
     return this.http.get(studentsUrl);
 }
-deleteStudent(email:string):Observable<any>{
-    return this.http.delete(studentsUrl+email);
-}
+// deleteStudent(email:string):Observable<any>{
+//     return this.http.delete(studentsUrl+email);
+// }
 getStudentByEmail(email:string):Observable<any>{
     return this.http.get(studentsUrl+email);
 }

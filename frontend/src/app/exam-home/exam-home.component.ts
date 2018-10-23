@@ -14,8 +14,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ExamHomeComponent implements OnInit {
   private token: string;
-  
-  constructor(private router: Router, private examService: ExamService, 
+
+  constructor(private router: Router, private examService: ExamService,
               private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
@@ -23,6 +23,7 @@ export class ExamHomeComponent implements OnInit {
 
     //TODO - get student
   const student: IStudent = {
+    _id:{},
     status: "new",
     enrollmentDate: new Date(),
     enrollmentForm: {},
@@ -43,5 +44,5 @@ export class ExamHomeComponent implements OnInit {
   onClick(){
     console.log('reached here!');
   }
-  
+
 }
