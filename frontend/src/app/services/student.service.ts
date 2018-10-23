@@ -20,12 +20,23 @@ export class StudentService {
   getStudents():Observable<any>{
     return this.http.get(studentsUrl);
 }
-deleteStudent(email:string):Observable<any>{
-    return this.http.delete(studentsUrl+email);
-}
+// deleteStudent(email:string):Observable<any>{
+//     return this.http.delete(studentsUrl+email);
+// }
 getStudentByEmail(email:string):Observable<any>{
+  console.log('getStudentByEmail');
+  console.log(studentsUrl+email);
     return this.http.get(studentsUrl+email);
 }
+
+getStudentByStatus(status:string):Observable<any>{
+  return this.http.get(studentsUrl+"find/"+status);
+}
+
+getStudentEnrolled(condition:string):Observable<any>{
+  return this.http.get(studentsUrl+"enrolled/"+condition);
+}
+
 updateUser(student:IStudent):Observable<any>{
     return this.http.put(studentsUrl+student.enrollmentForm.email,student);
 }

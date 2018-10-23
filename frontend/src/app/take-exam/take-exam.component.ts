@@ -5,8 +5,8 @@ import { StudentService } from './../services/student.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { IStudent } from '../redux/student';
-declare var require: any
-const ace = require('../../src-min-noconflict/ace');
+
+
 
 @Component({
   selector: 'app-take-exam',
@@ -33,7 +33,7 @@ export class TakeExamComponent implements OnInit {
 
 
   ngOnInit() {
-    
+   /* 
     ace.require("ace/ext/chromevox");
     let editor = ace.edit("editor");
     editor.session.setMode("ace/mode/javascript");
@@ -45,7 +45,7 @@ export class TakeExamComponent implements OnInit {
 
     editor = ace.edit("editor3");
     editor.session.setMode("ace/mode/javascript");
-    editor.setTheme("ace/theme/twilight");
+    editor.setTheme("ace/theme/twilight");*/
 
     
      this.router.params.subscribe(params => {
@@ -64,9 +64,9 @@ export class TakeExamComponent implements OnInit {
         self.questions.push(question);
       });
       this.captureSnapShots(student); 
-    });    
+    }); 
   }
-
+  
   captureSnapShots(student: IStudent){
     var self = this;
     setInterval(()=> { 
@@ -89,5 +89,4 @@ export class TakeExamComponent implements OnInit {
     this.examService.sendSnapshots(student);
     } , 10000);
   }
-
 }
