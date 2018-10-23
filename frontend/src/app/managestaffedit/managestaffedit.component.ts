@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IUser } from '../redux/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +11,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './managestaffedit.component.html',
   styleUrls: ['./managestaffedit.component.css']
 })
-export class ManagestaffeditComponent implements OnInit {
+export class ManagestaffeditComponent implements OnInit, OnDestroy {
+
   @Input() currentID;
   user: IUser;
   editForm: FormGroup;
@@ -49,5 +50,11 @@ export class ManagestaffeditComponent implements OnInit {
         });
 
   }
+<<<<<<< HEAD
+=======
+  ngOnDestroy(): void {
+    this.unsubscribe.unsubscribe();
+  }
+>>>>>>> e245057b0661a402ab5b7e5eb12d4c8c4b74208c
 
 }
