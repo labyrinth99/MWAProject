@@ -5,10 +5,11 @@
 <h6>first question</h6>
 <p>{{questions[0]?.text}}</p>
 <br/>
-<div id="editor">
+<div id="editor"  [(ngModel)]="textFromEditorQuestion1" ngDefaultControl>
     var x = "All this is syntax highlighted";
     return x;
 </div>
+<button (click)="onKeyUp()">clickme</button>
 <button class="btn btn-secondary" >Submit Question 1</button>
 <br/>
 <br/>
@@ -16,7 +17,7 @@
 <h6>second question</h6>
 <p>{{questions[1]?.text}}</p>
 <br/>
-<div id="editor2">
+<div id="editor2" [(ngModel)]="textFromEditorQuestion2" ngDefaultControl>
     var x = "All this is syntax highlighted";
     return x;
 </div>
@@ -27,7 +28,7 @@
 <h6>third question</h6>
 <p>{{questions[2]?.text}}</p>
 <br/>
-<div id="editor3">
+<div id="editor3" [(ngModel)]="textFromEditorQuestion3" ngDefaultControl>
     var x = "All this is syntax highlighted";
     return x;
 </div>
