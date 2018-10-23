@@ -37,7 +37,7 @@ export class EnrollFormComponent implements OnInit {
       this.ngRedux.dispatch({type: CREATE_STUDENT, student: this.model});
     });
     console.log('New Student');
-    alert("Check Your Email For Further Instruction");
+    alert("We will Contact you soon by Email For Further Instruction");
     console.log(this.model);
   }
 
