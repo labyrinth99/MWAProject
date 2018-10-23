@@ -18,7 +18,7 @@ export class ManagestaffaddComponent implements OnInit {
   ngOnInit() {
 
     this.addForm = this.formBuilder.group({
-      id: [],
+      _id: [],
       username: ['', Validators.required],
       password: ['', Validators.required],
       firstname: ['', Validators.required],
@@ -29,10 +29,11 @@ export class ManagestaffaddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.createUser(this.addForm.value)
-      .subscribe( data => {
+    this.userService.createUser(this.addForm.value);
+    this.activeModal.close();
+  /*    .subscribe( data => {
         this.activeModal.close();
-      });
+      });*/
 
   }
 
