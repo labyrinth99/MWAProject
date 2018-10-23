@@ -4,6 +4,8 @@ import { StudentService } from './../services/student.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IStudent } from '../redux/student';
+declare var require: any
+const ace = require('../../src-min-noconflict/ace');
 
 @Component({
   selector: 'app-take-exam',
@@ -18,6 +20,20 @@ export class TakeExamComponent implements OnInit {
 
 
   ngOnInit() {
+    ace.require("ace/ext/chromevox");
+    let editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/twilight");
+
+    editor = ace.edit("editor2");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/twilight");
+
+    editor = ace.edit("editor3");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/twilight");
+
+    
      this.router.params.subscribe(params => {
       this.renderQuestions(params['email']);
     });
