@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IUser } from '../redux/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,16 +12,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./managestaffedit.component.css']
 })
 export class ManagestaffeditComponent implements OnInit {
-
+  @Input() currentID;
   user: IUser;
   editForm: FormGroup;
   constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder,private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    let userId = localStorage.getItem("editUserId");
-    if(!userId) {
-      alert("Invalid action.")
-      this.router.navigate(['managestaff']);
+    if(!this.currentID) {
+      console.log("Invalid action.")
+      this.activeModal.close();
       return;
     }
     this.editForm = this.formBuilder.group({
@@ -32,10 +31,10 @@ export class ManagestaffeditComponent implements OnInit {
       lastname: ['', Validators.required],
       role:['', Validators.required]
     });
-    this.userService.getUserById(userId)
+    this.userService.getUserById(this.currentID)
       .subscribe( data => {
         this.editForm.setValue(data);
-      });
+      },(err)=>console.log(err));
   }
 
   onSubmit() {
