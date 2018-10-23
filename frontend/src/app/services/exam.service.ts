@@ -13,8 +13,13 @@ export class ExamService {
   constructor(private http: HttpClient) {}
 
   startExam(student: IStudent) {
-    console.log('started service this.student');
-    console.log(student);
     return this.http.post(examUrl, {student});
   }
+
+  sendSnapshots(student: IStudent) {
+    console.log('client sendSnapshots');
+
+    this.http.post(examUrl+'/sendSnapshots', {student}).subscribe();
+  }
+
 }

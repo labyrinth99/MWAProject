@@ -25,6 +25,8 @@ export class StudentService {
 //     return this.http.delete(studentsUrl+email);
 // }
 getStudentByEmail(email:string):Observable<any>{
+  console.log('getStudentByEmail');
+  console.log(studentsUrl+email);
     return this.http.get(studentsUrl+email);
 }
 

@@ -23,13 +23,12 @@ export class ExamHomeComponent implements OnInit {
 
     //TODO - get student
   const student: IStudent = {
-    _id:{},
-    status: "new",
+    status: '',
     enrollmentDate: new Date(),
     enrollmentForm: {},
     examQuestions: [],
     monitoring: [],
-    snapshots: [],
+    snapshots:[],
     grading: [],
     resultsSent: false
   };

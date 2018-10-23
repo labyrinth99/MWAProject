@@ -20,6 +20,13 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.post('/sendSnapshots', function(req, res, next) {
+    const student = req.body.student;
+    console.log('before saveSnapshot ------------ student =');
+    console.log(student);
+    studentService.saveSnapshots(student);
+});
+
 module.exports = router;
 
 //method 1
