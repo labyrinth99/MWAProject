@@ -1,4 +1,5 @@
 export interface IStudent {
+    _id: string;
     status: string;
     enrollmentDate: Date;
     enrollmentForm: any;

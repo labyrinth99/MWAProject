@@ -15,7 +15,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let student of students">
-                <td class="d-none">{{student.enrollmentForm.name}}</td>
+                <td class="d-none">{{student._id}}</td>
+                <td>{{student.enrollmentForm.name}}</td>
                 <td>{{student.enrollmentForm.email}}</td>
                 <td>{{student.enrollmentForm.address}}</td>
                 <!-- <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
