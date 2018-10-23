@@ -23,6 +23,8 @@ export class NewStudentsComponent implements OnInit {
 
   invite(studentx: IStudent){
 
+
+
     this.studentService.inviter(studentx.enrollmentForm.email, studentx.enrollmentForm.name)
       .subscribe( data => {
          console.log(data);
@@ -30,6 +32,7 @@ export class NewStudentsComponent implements OnInit {
 
       alert("Email Sent");
       this.ngOnInit();
+
 
   }
 
