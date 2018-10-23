@@ -22,7 +22,7 @@ export class ManageStaffComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers();
-    this.rusers.subscribe((data)=>{this.users=data.slice(0,data.length-1);});
+    this.rusers.subscribe((data)=>{this.users=data;});
   }
 
   deleteUser(user: IUser): void {
@@ -33,16 +33,12 @@ export class ManageStaffComponent implements OnInit {
   };
 
   editUser(user: IUser): void {
-    console.log("edit");
     const modal = this.modalService.open(ManagestaffeditComponent);
-    console.log("open");
     modal.componentInstance.currentID= user._id.toString();
-    console.log("add ID");
     //modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };
 
   addUser(): void {
-    console.log("users:", this.users);
     const modal = this.modalService.open(ManagestaffaddComponent);
     //modal.result.then(()=>this.ngOnInit()).catch((err)=>console.log(err));
   };

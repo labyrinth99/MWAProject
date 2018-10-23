@@ -45,7 +45,11 @@ export function rootReducer(state, action){
             state.students =  action.students;
         }
         case GET_USERS:{
-            state.users= action.users;
+            const newUser = Object.assign({}, state, {
+                users: [...action.users],
+                lastUpdate: new Date()
+            });
+            return newUser;
         }
         case CREATE_USER:{
             const newUser = Object.assign({}, state, {
@@ -58,8 +62,6 @@ export function rootReducer(state, action){
             // not tested but should work
             const newUser = action.user;
             const oldUser = state.users.find(s => s._id === newUser._id);
-            console.log('old student:' + oldUser);
-            console.log('new student:' + newUser);
             const index = state.users.indexOf(oldUser);
             const updatedUsers = Object.assign({}, state, {
                 users: [
