@@ -28,9 +28,10 @@ export class CommonService {
   }
   getUserRole() {
 
-    if(localStorage.getItem('student_email'))
+    if(localStorage.getItem('student_email')){
+      console.log('student taking exam')
     return 3;
-    else{
+  }else{
       let currentUser = JSON.parse(localStorage.getItem('token_id'));
       let payload= this.helper.decodeToken(currentUser.token);
       if(this.IsLoggedIn()) return payload.sub;
@@ -39,5 +40,10 @@ export class CommonService {
   }
   Logout() {
     localStorage.removeItem('token_id');
+  }
+
+  examOff(){
+   localStorage.removeItem('student_email');
+   console.log('Student remved from local storage')
   }
 }

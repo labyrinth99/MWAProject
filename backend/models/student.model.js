@@ -10,7 +10,7 @@ const StudentSchema = mongoose.Schema({
     monitoring: [],
     snapshots: [],
     grading: [],
-    resultsSent: boolean
+    resultsSent: Boolean
 });
 
 
