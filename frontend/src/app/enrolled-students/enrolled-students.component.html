@@ -1,8 +1,9 @@
 <div class="col-md-6" style="margin-left:25%">
-    <h2> Enrolled Students Details</h2>
+    <h1> Enrolled Students Details</h1>
     <hr/>
     <!-- <button class="btn btn-danger" (click)="addUser()"> Add User</button> -->
     <p></p>
+    <h4>Invited Students</h4>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -15,7 +16,83 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let student of students">
+            <tr *ngFor="let student of studentsI">
+                <td>{{student.enrollmentForm.name}}</td>
+                <td>{{student.enrollmentForm.email}}</td>
+                <td>{{student.enrollmentForm.address}}</td>
+                <td>{{student.status}}</td>
+                <!-- <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
+                    <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td> -->
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+
+    <h4>Answered Students</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of studentsA">
+                <td>{{student.enrollmentForm.name}}</td>
+                <td>{{student.enrollmentForm.email}}</td>
+                <td>{{student.enrollmentForm.address}}</td>
+                <td>{{student.status}}</td>
+                <!-- <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
+                    <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td> -->
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h4>Failed Students</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of studentsF">
+                <td>{{student.enrollmentForm.name}}</td>
+                <td>{{student.enrollmentForm.email}}</td>
+                <td>{{student.enrollmentForm.address}}</td>
+                <td>{{student.status}}</td>
+                <!-- <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
+                    <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td> -->
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+
+    <h4>Passed Students</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of studentsP">
                 <td>{{student.enrollmentForm.name}}</td>
                 <td>{{student.enrollmentForm.email}}</td>
                 <td>{{student.enrollmentForm.address}}</td>

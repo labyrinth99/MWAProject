@@ -26,6 +26,15 @@ export class StudentService {
 getStudentByEmail(email:string):Observable<any>{
     return this.http.get(studentsUrl+email);
 }
+
+getStudentByStatus(status:string):Observable<any>{
+  return this.http.get(studentsUrl+"find/"+status);
+}
+
+getStudentEnrolled(condition:string):Observable<any>{
+  return this.http.get(studentsUrl+"enrolled/"+condition);
+}
+
 updateUser(student:IStudent):Observable<any>{
     return this.http.put(studentsUrl+student.enrollmentForm.email,student);
 }

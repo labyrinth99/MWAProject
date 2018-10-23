@@ -11,14 +11,34 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EnrolledStudentsComponent implements OnInit {
 
-  students: IStudent[];
+  studentsA: IStudent[];
+  studentsI: IStudent[];
+  studentsP: IStudent[];
+  studentsF: IStudent[];
+
   constructor(private modalService: NgbModal,private router: Router, private studentService: StudentService) { }
 
   ngOnInit() {
-    this.studentService.getStudents()
+    this.studentService.getStudentByStatus("answered")
       .subscribe( data => {
-        this.students = data; console.log(data);
+        this.studentsA = data; console.log(data);
       },(error)=>console.log(error));
+
+      this.studentService.getStudentByStatus("invited")
+      .subscribe( data => {
+        this.studentsI = data; console.log(data);
+      },(error)=>console.log(error));
+
+      this.studentService.getStudentByStatus("pass")
+      .subscribe( data => {
+        this.studentsP = data; console.log(data);
+      },(error)=>console.log(error));
+
+      this.studentService.getStudentByStatus("fail")
+      .subscribe( data => {
+        this.studentsF = data; console.log(data);
+      },(error)=>console.log(error));
+
   }
 
 }
