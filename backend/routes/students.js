@@ -7,7 +7,8 @@
     
     /* GET students listing. */
     router.get('/:email', function(req, res, next) {
-        studentService.getStudentByEmail().then((data) => {
+        const email = req.params.email;
+        return studentService.getStudentByEmail(email).then((data) => {
             res.status(200).json(data);
         });    
     });
