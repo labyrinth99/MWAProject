@@ -27,7 +27,8 @@ import { FormsModule } from '@angular/forms';
 import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.component';
 import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component';
 import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
-import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component'
+import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
+import { AuthenticateStudentComponent } from './authenticate-student/authenticate-student.component'
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ManagequestionseditComponent } from './managequestionsedit/managequesti
     ManagestaffaddComponent,
     ManagestaffeditComponent,
     ManagequestionsaddComponent,
-    ManagequestionseditComponent    
+    ManagequestionseditComponent,
+    AuthenticateStudentComponent    
   ],
   imports: [
     BrowserModule,
