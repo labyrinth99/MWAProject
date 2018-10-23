@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-managestaffedit',
@@ -13,9 +15,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ManagestaffeditComponent implements OnInit {
   @Input() currentID;
-  user: IUser;
+  @select('users') rusers: Observable<IUser[]>;
+  users: IUser[];
   editForm: FormGroup;
-  constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder,private router: Router, private userService: UserService) { }
+
+  constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     if(!this.currentID) {
@@ -23,6 +27,7 @@ export class ManagestaffeditComponent implements OnInit {
       this.activeModal.close();
       return;
     }
+    this.rusers.subscribe((data)=>this.users=data);
     this.editForm = this.formBuilder.group({
       _id: [],
       username: ['', Validators.required],
@@ -31,22 +36,24 @@ export class ManagestaffeditComponent implements OnInit {
       lastname: ['', Validators.required],
       role:['', Validators.required]
     });
-    this.userService.getUserById(this.currentID)
+    this.editForm.setValue(this.users.find( u => u._id == this.currentID));
+/*    this.userService.getUserById(this.currentID)
       .subscribe( data => {
         this.editForm.setValue(data);
-      },(err)=>console.log(err));
+      },(err)=>console.log(err));*/
   }
 
   onSubmit() {
-    this.userService.updateUser(this.editForm.value)
-      .pipe(first())
+    this.userService.updateUser(this.editForm.value);
+    this.activeModal.close();
+  /*    .pipe(first())
       .subscribe(
         data => {
           this.activeModal.close();
         },
         error => {
           console.log(error);
-        });
+        });*/
 
   }
 
