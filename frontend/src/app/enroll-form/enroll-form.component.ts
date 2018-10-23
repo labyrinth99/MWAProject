@@ -18,6 +18,7 @@ export class EnrollFormComponent implements OnInit {
   model: IStudent = {
     status: "new",
     enrollmentDate: new Date(),
+    startDateTime: new Date(),
     enrollmentForm: {},
     examQuestions: [],
     monitoring: [],

@@ -27,7 +27,8 @@ import { FormsModule } from '@angular/forms';
 import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.component';
 import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component';
 import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
-import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component'
+import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ManagequestionseditComponent } from './managequestionsedit/managequesti
     HttpClientModule,
     NgReduxModule,
     FormsModule,
+    AceEditorModule,
     NgbModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS,useClass:AuthenService, multi:true}],

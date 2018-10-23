@@ -15,24 +15,21 @@ import { IStudent } from '../redux/student';
 })
 export class TakeExamComponent implements OnInit {
 
-  lastText:string = '';
   textFromEditorQuestion1: string = '';
   textFromEditorQuestion2: string = '';
   textFromEditorQuestion3: string = '';
-
-  onKeyUp(){
-    // this.textFromEditorQuestion1;
-    console.log(this.textFromEditorQuestion1);
-  }
 
 
   private questions = [];
 
   constructor( private studentService: StudentService, private examService: ExamService, 
-    private ngRedux: NgRedux<IAppState>,  private router: ActivatedRoute ) { }
+    private ngRedux: NgRedux<IAppState>,  private router: ActivatedRoute ) { 
+      console.log("params['email'] --------------- 1");
+    }
 
 
   ngOnInit() {
+    console.log("params['email']");
    /* 
     ace.require("ace/ext/chromevox");
     let editor = ace.edit("editor");
@@ -49,7 +46,10 @@ export class TakeExamComponent implements OnInit {
 
     
      this.router.params.subscribe(params => {
+      console.log("params['email']");
+       console.log(params['email']);
       this.renderQuestions(params['email']);
+      
     });
   }
 
