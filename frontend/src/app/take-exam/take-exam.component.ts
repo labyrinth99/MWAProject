@@ -106,7 +106,6 @@ export class TakeExamComponent implements OnInit {
     this.studentService.getStudentByEmail(email).subscribe((student: IStudent) => {
       var self = this;
       student.examQuestions.forEach(function(question){
-        console.log(question);
         self.questions.push(question);
       });
       this.captureSnapShots(student); 
@@ -118,22 +117,22 @@ export class TakeExamComponent implements OnInit {
     setInterval(()=> { 
     const qID1 = self.questions[0]._id;
     const qtxt1 = self.textFromEditorQuestion1;
-    const snap1 = {questionId: qID1, snapText: qtxt1};
+    const snap1 = {questionNo: 1, questionId: qID1, snapText: qtxt1};
 
     const qID2 = self.questions[1]._id;
     const qtxt2 = self.textFromEditorQuestion2;
-    const snap2 = {questionId: qID2, snapText: qtxt2};
+    const snap2 = {questionNo: 2, questionId: qID2, snapText: qtxt2};
 
     const qID3 = self.questions[2]._id;
     const qtxt3 = self.textFromEditorQuestion3;
-    const snap3 = {questionId: qID3, snapText: qtxt3};
+    const snap3 = {questionNo: 3, questionId: qID3, snapText: qtxt3};
 
     student.snapshots.push(snap1);
     student.snapshots.push(snap2);
     student.snapshots.push(snap3);
-    console.log('snapshots');
+
     console.log(student.snapshots);
-    console.log('this.examService.sendSnapshots(student)');
+
     this.examService.sendSnapshots(student);
     } , 90000);
   }
