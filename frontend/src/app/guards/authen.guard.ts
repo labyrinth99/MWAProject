@@ -23,13 +23,15 @@ export class AuthenGuard implements CanActivate {
         switch(nextRoute){
               case "admin":
               case "answeredstudents":
-              case "gradexam":
+              case "gradeexam":
               case "managequestions":
               case "managestaff":
               case "managestaffadd":
               case "managestaffedit":
               case "managequestionsadd":
               case "managequestionsedit":
+              case "homeExam":
+              case "takeexam":
                 return true;
       }
     }
@@ -43,12 +45,16 @@ export class AuthenGuard implements CanActivate {
 
       }
       case 3:{
-        return true; // for goustavo
+        switch(nextRoute){
+          case "homeExam":
+          case "takeexam":
+            return true;
+        }
       }
 
       default:{
         console.log("Access denied due to role");
-          this.router.navigate(['home']);
+          this.router.navigate(['takeexam']);
           return false;
 
       }
