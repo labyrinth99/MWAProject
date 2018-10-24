@@ -7,7 +7,7 @@ const StudentSchema = mongoose.Schema({
     enrollmentDate: { type: Date, default: Date.now },
     enrollmentForm: {name: String ,email:String},
     examQuestions: [],
-    monitoring: [],
+    monitoring: {startTime: Date, endTime: Date, outOfWindow: Number},
     snapshots: [],
     grading: [],
     resultsSent: false

@@ -4,7 +4,7 @@ export interface IStudent {
     startDateTime: Date;
     enrollmentForm: any;
     examQuestions: any[];
-    monitoring: any[];
+    monitoring: any;
     snapshots:any[];
     grading: any[];
     resultsSent: boolean;

@@ -20,13 +20,11 @@ export class StudentService {
 
   getStudents():Observable<any>{
     return this.http.get(studentsUrl);
-}
+  }
 // deleteStudent(email:string):Observable<any>{
 //     return this.http.delete(studentsUrl+email);
 // }
 getStudentByEmail(email:string):Observable<any>{
-  console.log('getStudentByEmail');
-  console.log(studentsUrl+email);
     return this.http.get(studentsUrl+email);
 }
 
@@ -36,6 +34,11 @@ getStudentByStatus(status:string):Observable<any>{
 
 getStudentEnrolled(condition:string):Observable<any>{
   return this.http.get(studentsUrl+"enrolled/"+condition);
+}
+
+finishExam(student:IStudent):Observable<any>{
+  console.log('calling finishExam -------');
+  return this.http.post(studentsUrl+"finishExam/", student);
 }
 
 updateUser(student:IStudent):Observable<any>{

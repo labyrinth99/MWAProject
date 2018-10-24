@@ -21,11 +21,24 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.post('/finishExam', function(req, res, next) {
+    const student = req.body;
+    student.status = 'finished';
+    student.monitoring.endTime = new Date();
+    console.log(student);
+    studentService.saveStudent(student).then(() =>{
+        res.status(200).json(student);
+    });    
+});
+
+
 router.post('/sendSnapshots', function(req, res, next) {
     const student = req.body.student;
     console.log('before saveSnapshot ------------ student =');
     console.log(student.enrollmentForm.email);
-    studentService.saveSnapshots(student);
+    studentService.saveSnapshots(student).then(() =>{
+        res.status(200).json(student);
+    });
 });
 
 module.exports = router;

@@ -19,7 +19,12 @@ export class ExamService {
   sendSnapshots(student: IStudent) {
     console.log('client sendSnapshots');
 
-    this.http.post(examUrl+'/sendSnapshots', {student}).subscribe();
+    return this.http.post(examUrl+'/sendSnapshots', {student});
+  }
+
+  finishExam(student:IStudent) {
+    console.log('calling finishExam -------');
+    return this.http.post(examUrl+"finishExam/", student);
   }
 
 }

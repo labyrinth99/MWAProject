@@ -1,13 +1,12 @@
+import { UPDATE_STUDENT } from './../redux/actions';
 import { ExamService } from './../services/exam.service';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from './../redux/store';
 import { StudentService } from './../services/student.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {  Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IStudent } from '../redux/student';
-import { AceEditorModule } from 'ng2-ace-editor';
-import { Observable, timer } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,7 +16,9 @@ import { take, map } from 'rxjs/operators';
 <h4>Exam</h4>
 <br/>
 <br/>
-<countdown [config]="{leftTime:60 * 180}" (finished)="onTimeFinished()">$!h!:$!m!:$!s!</countdown>
+<countdown [config]="{leftTime:60 * 180}" 
+  (finished)="openVerticallyCentered(content);finishExam()">$!h!:$!m!:$!s!
+</countdown>
 <br/>
 <br/>
 <h6>first question</h6>
@@ -53,56 +54,58 @@ import { take, map } from 'rxjs/operators';
 <br/>
 <br/>
 <br/>
-<button class="btn btn-success" >Finish Exam</button>
+<button class="btn btn-success" (click)="openVerticallyCentered(content);finishExam()" >Finish Exam</button>
 <br/>
 <br/>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">End of exam!</h4>
+  </div>
+  <div class="modal-body">
+    <p>You submited your exam!</p>
+    <p>within the next few days you are going to receive your results on your registered email!</p>
+  </div>
+</ng-template>
   `,
   styleUrls: ['./take-exam.component.css']
 })
 export class TakeExamComponent implements OnInit {
 
+  interval = null;
 
+  closeResult: string;
 
   textFromEditorQuestion1: string = '';
   textFromEditorQuestion2: string = '';
   textFromEditorQuestion3: string = '';
 
   onChange1() {
-    console.log("this.textFromEditorQuestion1");
-    console.log(this.textFromEditorQuestion1);
   }
 
   onChange2() {
-    console.log("this.textFromEditorQuestion2");
-    console.log(this.textFromEditorQuestion2);
   }
 
   onChange3() {
-    console.log("this.textFromEditorQuestion3");
-    console.log(this.textFromEditorQuestion3);
   }
 
   text:string = "";
   options:any = {maxLines: 1000, printMargin: false};
-  @ViewChild('editor') editor;
+  staringDateTime:Date;
 
 
   private questions = [];
 
   constructor( private studentService: StudentService, private examService: ExamService, 
-    private ngRedux: NgRedux<IAppState>,  private router: ActivatedRoute ) { 
+    private ngRedux: NgRedux<IAppState>, private activeteRoute:ActivatedRoute,  private router: Router, private modalService: NgbModal ) { 
       
     }
 
 
   ngOnInit() {
+    this.staringDateTime = new Date();
     
-    
-     this.router.params.subscribe(params => {
-      console.log("params['email']");
-       console.log(params['email']);
-      this.renderQuestions('teste@teste.com');
-      
+     this.activeteRoute.params.subscribe(params => {
+      this.renderQuestions('teste@teste.com');      
     });
   }
 
@@ -119,7 +122,7 @@ export class TakeExamComponent implements OnInit {
   
   captureSnapShots(student: IStudent){
     var self = this;
-    setInterval(()=> { 
+    this.interval = setInterval(()=> { 
     const qID1 = self.questions[0]._id;
     const qtxt1 = self.textFromEditorQuestion1;
     const snap1 = {questionNo: 1, questionId: qID1, snapText: qtxt1};
@@ -136,13 +139,35 @@ export class TakeExamComponent implements OnInit {
     student.snapshots.push(snap2);
     student.snapshots.push(snap3);
 
-    console.log(student.snapshots);
+    this.examService.sendSnapshots(student).subscribe(() =>{
+      this.ngRedux.dispatch({type: UPDATE_STUDENT, student: student});
+    });
 
-    this.examService.sendSnapshots(student);
     } , 90000);
   }
 
-  onTimeFinished(){
+  finishExam(){
+    this.studentService.getStudentByEmail('teste@teste.com').subscribe((student: IStudent) => {
+    student.monitoring = {
+      startTime: this.staringDateTime,
+      endTime: null, // will get from the server
+      outOfWindow: 0
+    };
+    student.examQuestions[0].finalAnswer = this.textFromEditorQuestion1;
+    student.examQuestions[1].finalAnswer = this.textFromEditorQuestion2;
+    student.examQuestions[2].finalAnswer = this.textFromEditorQuestion3;
 
+
+    this.examService.finishExam(student).subscribe(() =>{
+      this.ngRedux.dispatch({type: UPDATE_STUDENT, student: student});     
+      });
+    });
+
+    clearInterval(this.interval);
+    this.router.navigate(['/home']);    
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
 }

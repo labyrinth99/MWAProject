@@ -4,7 +4,7 @@ import { IStudent } from './../redux/student';
 import { NgRedux } from '@angular-redux/store';
 import { ExamService } from './../services/exam.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
