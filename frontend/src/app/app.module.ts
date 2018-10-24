@@ -28,6 +28,9 @@ import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.compone
 import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component';
 import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
 import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
+
+import { AceEditorModule } from 'ng2-ace-editor';
+
 import { AuthenticateStudentComponent } from './authenticate-student/authenticate-student.component'
 
 @NgModule({
@@ -59,6 +62,7 @@ import { AuthenticateStudentComponent } from './authenticate-student/authenticat
     HttpClientModule,
     NgReduxModule,
     FormsModule,
+    AceEditorModule,
     NgbModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS,useClass:AuthenService, multi:true}],

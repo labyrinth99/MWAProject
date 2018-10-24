@@ -2,8 +2,8 @@ const StudentModel = require('../models/student.model');
 const service = class Service{};
 
 service.saveStudent = function(student){  
-    const query = { email: student.email };
-    return StudentModel.findOneAndUpdate(query, student, {upsert:false});    
+    const query = { "enrollmentForm.email": student.enrollmentForm.email };
+    return StudentModel.findOneAndUpdate(query, student, {upsert:false}).exec();    
 }
 
 service.getStudentByEmail = function(sudentEmail){  
@@ -13,32 +13,38 @@ service.getStudentByEmail = function(sudentEmail){
     return StudentModel.findOne(query);    
 }
 
-service.saveSnapshots = function(student){  
-    const query = { email: student.email };
+service.saveSnapshots = function(student){ 
+    console.log('const query = { email: student.email }; ---------------');
+    console.log(student.enrollmentForm.email);
+
+    var mySudent = student; // I need this to be local to the method
+    const query = { "enrollmentForm.email": student.enrollmentForm.email };
     return StudentModel.findOne(query).exec().then((dbStudent) => {
-        console.log('dbStudent.snapshots ---------------');
+        console.log('dbStudent.snapshots.size() ---------------');
         console.log(dbStudent);
+
+        var frameID = 1;        
+        var i = 1;
+
+        console.log(' mySudent.snapshots -----------------------');
+
+        console.log(' mySudent.snapshots -----------------------');
+        console.log(' mySudent.snapshots -----------------------');
+        console.log(' mySudent.snapshots -----------------------');
+        console.log(' mySudent.snapshots -----------------------');
+            console.log( mySudent.snapshots);
         
-        //generate the IDs
-        if(dbStudent.snapshots[0].frameId)
-            var last = dbStudent.snapshots[0].frameId;
-        else 
-            var last = 0;
-        var i = 0;
-        for (let s of student.snapshots) {
+        for (let s of mySudent.snapshots) {
+            mySudent.snapshots[i - 1].frameId = frameID;
+            if(i % 3 === 0) frameID++;      
+            i++;
+
             console.log('snapshots -----------------------');
             console.log(s);
-            if(s.frameId === undefined) s.frameId = 0;
-            else s.frameId++;
-            console.log('student.snapshots[i] -----------------------');
-            console.log(student.snapshots[i]);
-            student.snapshots[i] = Object.assign(student.snapshots[i], {frameId: last}),
-            i++;
         }
         console.log('before save');
-        console.log(email);
-        service.saveStudent(student);
-                
+        service.saveStudent(mySudent);
+        console.log('saved');                
     }); 
 
 
