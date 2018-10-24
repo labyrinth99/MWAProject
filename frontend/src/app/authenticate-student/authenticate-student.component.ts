@@ -25,7 +25,9 @@ export class AuthenticateStudentComponent implements OnInit {
 
     const url = this.router.url;
 
-    this.confirmSignIn(url)
+    if (url.includes('signIn')) {
+      this.confirmSignIn(url);
+    }
   }
   // onSubmit(){
   //   if(!this.email)
@@ -104,11 +106,19 @@ export class AuthenticateStudentComponent implements OnInit {
 
         // Signin user and remove the email localStorage
         const result = await this.afAuth.auth.signInWithEmailLink(email, url);
+        localStorage.setItem('student_email',email);
         window.localStorage.removeItem('emailForSignIn');
       }
     } catch (err) {
       this.errorMessage = err.message;
     }
+  }
+
+
+  redirect(){
+    this.afAuth.auth.signOut();
+    this.router.navigate(['examhome']);
+
   }
 
 }
