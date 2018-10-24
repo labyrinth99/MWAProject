@@ -1,3 +1,24 @@
-<p>
-  answered-students works!
-</p>
+<div class="col-md-6" style="margin-left:25%">
+    <h4>Answered Students</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of studentsA">
+                <td>{{student.enrollmentForm.name}}</td>
+                <td>{{student.enrollmentForm.email}}</td>
+                <td>{{student.enrollmentForm.address}}</td>
+                <td>{{student.status}}</td>
+                <td><button class="btn btn-danger" (click)='grade(student)'>Grade</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

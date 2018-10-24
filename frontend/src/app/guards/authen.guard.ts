@@ -23,7 +23,7 @@ export class AuthenGuard implements CanActivate {
         switch(nextRoute){
               case "admin":
               case "answeredstudents":
-              case "gradexam":
+              case "gradeexam":
               case "managequestions":
               case "managestaff":
               case "managestaffadd":
