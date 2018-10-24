@@ -1,5 +1,6 @@
 const express = require('express');
 const examService = require('../services/examService');
+const studentService = require('../services/studentService');
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.post('/', function(req, res, next) {
 router.post('/sendSnapshots', function(req, res, next) {
     const student = req.body.student;
     console.log('before saveSnapshot ------------ student =');
-    console.log(student);
+    console.log(student.enrollmentForm.email);
     studentService.saveSnapshots(student);
 });
 

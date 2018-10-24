@@ -3,14 +3,56 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from './../redux/store';
 import { StudentService } from './../services/student.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IStudent } from '../redux/student';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 
 
 @Component({
   selector: 'app-take-exam',
-  templateUrl: './take-exam.component.html',
+  template: `
+
+<h4>Exam</h4>
+<br/>
+<br/>
+<h6>first question</h6>
+<p>{{questions[0]?.text}}</p>
+<br/>
+<div ace-editor  [(text)]="textFromEditorQuestion1" [mode]="'javascript'" [options]="options"  [readOnly]="false"  [autoUpdateContent]="true" 
+  [durationBeforeCallback]="1000" (textChanged)="onChange1($event)" 
+  style="min-height: 250px; width:70%; overflow: auto;"></div>
+  <button class="btn btn-secondary" >Submit Question 1</button>
+  <br/>
+  <br/>
+  <br/>
+  <h6>second question</h6>
+  <p>{{questions[1]?.text}}</p>
+  <br/>
+<div ace-editor  [(text)]="textFromEditorQuestion2" [mode]="'javascript'" [options]="options"  [readOnly]="false"  [autoUpdateContent]="false" 
+    [durationBeforeCallback]="1000" (textChanged)="onChange2($event)" 
+    style="min-height: 250px; width:70%; overflow: auto;"></div>
+<button class="btn btn-secondary" >Submit Question 2</button>
+<br/>
+<br/>
+<br/>
+<h6>third question</h6>
+<p>{{questions[2]?.text}}</p>
+<br/>
+<div ace-editor  [(text)]="textFromEditorQuestion3" [mode]="'javascript'" [options]="options"  [readOnly]="false"  [autoUpdateContent]="true" 
+  [durationBeforeCallback]="1000" (textChanged)="onChange3($event)" 
+  style="min-height: 250px; width:70%; overflow: auto;"></div>
+<button class="btn btn-secondary" >Submit Question 2</button>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<button class="btn btn-success" >Finish Exam</button>
+<br/>
+<br/>
+  `,
   styleUrls: ['./take-exam.component.css']
 })
 export class TakeExamComponent implements OnInit {
@@ -18,6 +60,25 @@ export class TakeExamComponent implements OnInit {
   textFromEditorQuestion1: string = '';
   textFromEditorQuestion2: string = '';
   textFromEditorQuestion3: string = '';
+
+  onChange1() {
+    console.log("this.textFromEditorQuestion1");
+    console.log(this.textFromEditorQuestion1);
+  }
+
+  onChange2() {
+    console.log("this.textFromEditorQuestion2");
+    console.log(this.textFromEditorQuestion2);
+  }
+
+  onChange3() {
+    console.log("this.textFromEditorQuestion3");
+    console.log(this.textFromEditorQuestion3);
+  }
+
+  text:string = "";
+  options:any = {maxLines: 1000, printMargin: false};
+  @ViewChild('editor') editor;
 
 
   private questions = [];
@@ -29,26 +90,11 @@ export class TakeExamComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log("params['email']");
-   /* 
-    ace.require("ace/ext/chromevox");
-    let editor = ace.edit("editor");
-    editor.session.setMode("ace/mode/javascript");
-    editor.setTheme("ace/theme/twilight");
-
-    editor = ace.edit("editor2");
-    editor.session.setMode("ace/mode/javascript");
-    editor.setTheme("ace/theme/twilight");
-
-    editor = ace.edit("editor3");
-    editor.session.setMode("ace/mode/javascript");
-    editor.setTheme("ace/theme/twilight");*/
-
     
      this.router.params.subscribe(params => {
       console.log("params['email']");
        console.log(params['email']);
-      this.renderQuestions(params['email']);
+      this.renderQuestions('teste@teste.com');
       
     });
   }
@@ -85,6 +131,8 @@ export class TakeExamComponent implements OnInit {
     student.snapshots.push(snap1);
     student.snapshots.push(snap2);
     student.snapshots.push(snap3);
+    console.log('snapshots');
+    console.log(student.snapshots);
     console.log('this.examService.sendSnapshots(student)');
     this.examService.sendSnapshots(student);
     } , 10000);

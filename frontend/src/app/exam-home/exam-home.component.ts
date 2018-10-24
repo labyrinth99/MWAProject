@@ -4,7 +4,7 @@ import { IStudent } from './../redux/student';
 import { NgRedux } from '@angular-redux/store';
 import { ExamService } from './../services/exam.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -55,13 +55,11 @@ export class ExamHomeComponent implements OnInit {
     };
   
     const studentEmail = student.enrollmentForm.email;
-    console.log('studentEmail');
-    console.log(studentEmail);
+        
     this.examService.startExam(student).subscribe( (data) => {
-        this.ngRedux.dispatch({type: UPDATE_STUDENT, student: data}).student;
-        console.log('studentEmail');
-        console.log(studentEmail);
-        this.router.navigate(['/takeexam/', {email: studentEmail}]);
+        this.ngRedux.dispatch({type: UPDATE_STUDENT, student: data}).student;        
+        this.router.navigate(['/takeexam']);
     });
   }
+
 }
