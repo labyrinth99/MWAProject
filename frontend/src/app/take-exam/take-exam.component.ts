@@ -135,6 +135,6 @@ export class TakeExamComponent implements OnInit {
     console.log(student.snapshots);
     console.log('this.examService.sendSnapshots(student)');
     this.examService.sendSnapshots(student);
-    } , 10000);
+    } , 90000);
   }
 }
