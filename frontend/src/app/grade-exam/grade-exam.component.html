@@ -1,1 +1,68 @@
 <h2>Grade Student Exam</h2>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{student.enrollmentForm.name}}</td>
+            <td>{{student.enrollmentForm.email}}</td>
+            <td>{{student.enrollmentForm.address}}</td>
+            <td>{{student.status}}</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <h4>Question 1: {{student.examQuestions[0].text}}</h4>
+    <textarea name="question1" id="question1" cols="60" rows="10">{{student.snapshots[0].snapText}}</textarea>
+</div>
+<div class="form-row center" style="margin: auto;width: 22%;">
+    <div class="col-auto">
+        <input type="text" class="form-control" placeholder="Grade Question" id="q1" name="q1">
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary">Enroll</button>
+    </div>
+</div>
+<div>
+    <h4>Question 1: {{student.examQuestions[0].text}}</h4>
+    <textarea name="question2" id="question2" cols="60" rows="10">{{student.snapshots[0].snapText}}</textarea>
+</div>
+<div class="form-row center" style="margin: auto;width: 22%;">
+    <div class="col-auto">
+        <input type="text" class="form-control" placeholder="Grade Question" id="q1" name="q1">
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary">Enroll</button>
+    </div>
+</div>
+<div>
+    <h4>Question 1: {{student.examQuestions[0].text}}</h4>
+    <textarea name="question3" id="question3" cols="60" rows="10">{{student.snapshots[0].snapText}}</textarea>
+</div>
+<div class="form-row center" style="margin: auto;width: 22%;">
+    <div class="col-auto">
+        <input type="text" class="form-control" placeholder="Grade Question" id="q1" name="q1">
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary">Enroll</button>
+    </div>
+</div>
+<p></p>
+<div class="form-row center" style="margin: auto;width: 22%;">
+    <div class="col-auto">
+        <select class="form-control">
+          <option>Pass</option>
+          <option>Fail</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary">Submit Final Result</button>
+    </div>
+</div>

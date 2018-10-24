@@ -10,7 +10,7 @@ import { StudentService } from '../services/student.service';
 })
 export class GradeExamComponent implements OnInit, OnDestroy {
 
-  @Input() student:IStudent;
+  student:IStudent;
 
   constructor(private route:ActivatedRoute,private studentService:StudentService) { 
   }
