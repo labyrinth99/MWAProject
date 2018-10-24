@@ -30,6 +30,19 @@ import { ManagequestionsaddComponent } from './managequestionsadd/managequestion
 import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
 import { AuthenticateStudentComponent } from './authenticate-student/authenticate-student.component'
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCtycFsyJSv4CUw2kNkOwrx1T3KFTnpVCQ",
+  authDomain: "mwaproject-2693d.firebaseapp.com",
+  databaseURL: "https://mwaproject-2693d.firebaseio.com",
+  projectId: "mwaproject-2693d",
+  storageBucket: "mwaproject-2693d.appspot.com",
+  messagingSenderId: "628523953652"
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +63,7 @@ import { AuthenticateStudentComponent } from './authenticate-student/authenticat
     ManagestaffeditComponent,
     ManagequestionsaddComponent,
     ManagequestionseditComponent,
-    AuthenticateStudentComponent    
+    AuthenticateStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +72,9 @@ import { AuthenticateStudentComponent } from './authenticate-student/authenticat
     HttpClientModule,
     NgReduxModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS,useClass:AuthenService, multi:true}],
   bootstrap: [AppComponent]

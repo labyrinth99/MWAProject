@@ -1,3 +1,8 @@
+<!-- <ng-container *ngIf="user | async; else login">
+Successful ok
+</ng-container> -->
+
+<!-- <ng-template #login>
 <div class="col-md-6" style="margin-left:25%">
 <h6>Authenticate Student By Email</h6>
 <form (ngSubmit)="onSubmit()" #todoForm="ngForm">
@@ -18,4 +23,33 @@
       </div>
 </form>
 
+<hr>
+  <div *ngIf="emailSent">email sent</div>
+  <div *ngIf="errorMessage">{{errorMessage}}</div>
+
 </div>
+</ng-template> -->
+
+
+<ng-container *ngIf="user | async; else login">
+  Successful ok
+  <button>Signout</button>
+
+  </ng-container>
+  <ng-template #login>
+
+    <label for="email" class="label">Passwordless Auth</label><br>
+    <input type="email" class="input" [(ngModel)]="email">
+
+
+    <button class="button is-primary"
+            [disabled]="emailSent"
+            (click)="sendEmailLink(email)">
+
+            Get Login Link
+
+    </button>
+    <hr>
+    <div *ngIf="emailSent">email sent</div>
+    <div *ngIf="errorMessage">{{errorMessage}}</div>
+  </ng-template>
