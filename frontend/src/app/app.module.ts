@@ -28,7 +28,7 @@ import { ManagestaffaddComponent } from './managestaffadd/managestaffadd.compone
 import { ManagestaffeditComponent } from './managestaffedit/managestaffedit.component';
 import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
 import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
-
+import { CountdownModule } from 'ngx-countdown';
 import { AceEditorModule } from 'ng2-ace-editor';
 
 import { AuthenticateStudentComponent } from './authenticate-student/authenticate-student.component'
@@ -79,6 +79,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AceEditorModule,
+    CountdownModule,
     NgbModule.forRoot()
 
   ],

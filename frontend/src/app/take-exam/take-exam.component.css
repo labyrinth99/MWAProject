@@ -38,3 +38,7 @@
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0 0 12px 0 lightblue;
 }
+
+.count-down{
+    font: 60px arial;
+}

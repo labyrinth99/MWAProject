@@ -6,7 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IStudent } from '../redux/student';
 import { AceEditorModule } from 'ng2-ace-editor';
-
+import { Observable, timer } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 
 
 @Component({
@@ -14,6 +15,9 @@ import { AceEditorModule } from 'ng2-ace-editor';
   template: `
 
 <h4>Exam</h4>
+<br/>
+<br/>
+<countdown [config]="{leftTime:60 * 180}" (finished)="onTimeFinished()">$!h!:$!m!:$!s!</countdown>
 <br/>
 <br/>
 <h6>first question</h6>
@@ -57,6 +61,8 @@ import { AceEditorModule } from 'ng2-ace-editor';
 })
 export class TakeExamComponent implements OnInit {
 
+
+
   textFromEditorQuestion1: string = '';
   textFromEditorQuestion2: string = '';
   textFromEditorQuestion3: string = '';
@@ -85,11 +91,12 @@ export class TakeExamComponent implements OnInit {
 
   constructor( private studentService: StudentService, private examService: ExamService, 
     private ngRedux: NgRedux<IAppState>,  private router: ActivatedRoute ) { 
-      console.log("params['email'] --------------- 1");
+      
     }
 
 
   ngOnInit() {
+    
     
      this.router.params.subscribe(params => {
       console.log("params['email']");
@@ -100,8 +107,6 @@ export class TakeExamComponent implements OnInit {
   }
 
   renderQuestions(email:string){
-
-   // [{question_id, snap_text, frame_id}]
 
     this.studentService.getStudentByEmail(email).subscribe((student: IStudent) => {
       var self = this;
@@ -135,5 +140,9 @@ export class TakeExamComponent implements OnInit {
 
     this.examService.sendSnapshots(student);
     } , 90000);
+  }
+
+  onTimeFinished(){
+
   }
 }
