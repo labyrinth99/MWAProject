@@ -75,6 +75,10 @@ export class AuthenticateStudentComponent implements OnInit {
   // new stuff
 
   async sendEmailLink() {
+
+    if(!this.email)
+    alert('Please Enter Your Email First');
+    else{
     const actionCodeSettings = {
       // Your redirect URL
       url: 'https://localhost:4200/authenicatestudent',
@@ -92,6 +96,7 @@ export class AuthenticateStudentComponent implements OnInit {
       this.errorMessage = err.message;
     }
   }
+}
 
 
   async confirmSignIn(url) {
