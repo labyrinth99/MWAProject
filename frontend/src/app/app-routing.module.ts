@@ -19,6 +19,7 @@ import { compileComponentFromMetadata } from '@angular/compiler';
 import { ManagequestionsaddComponent } from './managequestionsadd/managequestionsadd.component';
 import { ManagequestionseditComponent } from './managequestionsedit/managequestionsedit.component';
 import { EnrolledStudentsComponent } from './enrolled-students/enrolled-students.component';
+import {AuthenticateStudentComponent} from './authenticate-student/authenticate-student.component'
 import { from } from 'rxjs';
 const routes: Routes = [
   {path:'', component:HomeComponent,pathMatch:'full'},
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path:'newstudents',component:NewStudentsComponent,canActivate:[AuthenGuard]},
   {path:'staffhome',component:StaffHomeComponent,canActivate:[AuthenGuard]},
   {path:'takeexam',component:TakeExamComponent/*,canActivate:[AuthenGuard]*/},
+  {path:'authenicatestudent',component:AuthenticateStudentComponent},
   {path:'**',redirectTo:'/'}
 ];
 
