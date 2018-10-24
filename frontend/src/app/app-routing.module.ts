@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:'enrolled',component:EnrolledStudentsComponent,canActivate:[AuthenGuard]},
   {path:'answeredstudents',component:AnsweredStudentsComponent,canActivate:[AuthenGuard]},
   {path:'examhome',component:ExamHomeComponent/*,canActivate:[AuthenGuard]*/},
-  {path:'gradexam',component:GradeExamComponent,canActivate:[AuthenGuard]},
+  {path:'gradeexam',component:GradeExamComponent,canActivate:[AuthenGuard]},
   {path:'managequestions',component:ManageQuestionsComponent,canActivate:[AuthenGuard]},
   {path:'managequestionsadd',component:ManagequestionsaddComponent, canActivate:[AuthenGuard]},
   {path:'managequestionsedit', component:ManagequestionseditComponent, canActivate:[AuthenGuard]},
