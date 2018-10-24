@@ -33,7 +33,7 @@ Successful ok
 
 <ng-container *ngIf="user | async; else login">
   Successful ok
-  <button>Signout</button>
+  <button (click)="redirect()">Goto Exam Page</button>
 
   </ng-container>
   <ng-template #login>
