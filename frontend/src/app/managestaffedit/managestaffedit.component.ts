@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IUser } from '../redux/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import { first } from 'rxjs/operators';
+//import { first } from 'rxjs/operators';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs';
