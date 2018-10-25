@@ -16,6 +16,7 @@ export class CommonService {
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('token_id', JSON.stringify(user));
+          // needs changing
         }
         return user;
       }));

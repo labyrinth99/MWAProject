@@ -54,7 +54,7 @@ export class AuthenGuard implements CanActivate {
 
       default:{
         console.log("Access denied due to role");
-          this.router.navigate(['takeexam']);
+          this.router.navigate(['login']);
           return false;
 
       }
