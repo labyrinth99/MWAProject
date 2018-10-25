@@ -81,7 +81,7 @@ export class AuthenticateStudentComponent implements OnInit {
     else{
     const actionCodeSettings = {
       // Your redirect URL
-      url: 'https://localhost:4200/authenicatestudent',
+      url: 'http://localhost:4200/authenicatestudent',
       handleCodeInApp: true,
     };
 
